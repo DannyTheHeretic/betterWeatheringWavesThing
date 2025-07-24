@@ -60,6 +60,7 @@ const setupSettings = async () => {
   const settings: AppSettings = {
       temp_unit: {
           label: "Temperature Unit",
+          version: '1.0.8',
           id: 'temp_unit',
           value: "f",
           type: SETTING_TYPES.SELECT,
@@ -70,6 +71,7 @@ const setupSettings = async () => {
       },
       speed_unit: {
           label: "Wind Speed Unit",
+          version: '1.0.8',
           id: 'speed_unit',
           value: "mph",
           placeholder: "mph",
@@ -81,16 +83,18 @@ const setupSettings = async () => {
       },
       latitude: {
           label: "Latitude",
+          version: '1.0.8',
           id: 'latitude',
           value: latitude,
           description:
               "The latitude of the location you want to get weather data for. Can be found on google maps.",
           type: SETTING_TYPES.NUMBER,
-          min: -180,
-          max: 180,
+          min: -90 ,
+          max: 90,
       },
       longitude: {
           label: "Longitude",
+          version: '1.0.8',
           id: 'longitude',
           description:
               "The longitude of the location you want to get weather data for. Can be found on google maps.",
@@ -101,6 +105,7 @@ const setupSettings = async () => {
       },
       from: {
           id: 'from',
+          version: '1.0.8',
           label: "First Color",
           description: "Adjust the color using the color picker",
           type: SETTING_TYPES.COLOR,
@@ -108,6 +113,7 @@ const setupSettings = async () => {
       },
       mid: {
           id: 'mid',
+          version: '1.0.8',
           label: "Middle Color",
           description: "Adjust the color using the color picker",
           type: SETTING_TYPES.COLOR,
@@ -115,6 +121,7 @@ const setupSettings = async () => {
       },
       to: {
           id: 'to',
+          version: '1.0.8',
           label: "End Color",
           description: "Adjust the color using the color picker",
           type: SETTING_TYPES.COLOR,
@@ -122,6 +129,7 @@ const setupSettings = async () => {
       },
       breathing: {
           id: 'breathing',
+          version: '1.0.8',
           label: "Breathing Gradient",
           description: "Whether or not to animate the background",
           type: SETTING_TYPES.BOOLEAN,
@@ -129,12 +137,18 @@ const setupSettings = async () => {
       },
       duration: {
           id: 'duration',
-          label: "Third Dependant Setting",
-          description: "Set Dependant Setting to any value but 'disabled' to enable this",
+          version: '1.0.8',
+          label: "Animation Duration",
+          description: "The duration of the animation in seconds",
           type: SETTING_TYPES.NUMBER,
+          min: 1,
+          max: 1000,
           value: 10,
-          min: 0,
-          max: 100,
+          dependsOn: [
+            {
+              settingId: 'breathing'
+            }
+          ]
       }
   };
 

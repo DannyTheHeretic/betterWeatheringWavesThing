@@ -15,8 +15,13 @@ interface WeatherProps {
 const Simple = ({ weatherData }: WeatherProps) => {
   // Initial time fetched from SettingsStore
 
-  
+  // Moved all state variables to the top for better organization
   const [settings, setSettings] = useState<AppSettings | null>(null);
+
+  const [time, setTime] = useState<string | null>(null)
+
+  // State to store the Spotify thumbnail URL, start with a placeholder image
+  const [thumbnail, setThumbnail] = useState<string | null>();
   
   useEffect(() => {
     
@@ -25,7 +30,7 @@ const Simple = ({ weatherData }: WeatherProps) => {
     })
 
     const fetchSettings = () => {
-      DeskThing.send({ app: 'client', type: CLIENT_REQUESTS.GET, request: 'settings' });
+      DeskThing.getSettings() // will trigger the listener
     }
 
 
@@ -36,12 +41,6 @@ const Simple = ({ weatherData }: WeatherProps) => {
       clearTimeout(timeout);
     }
   }, [])
-
-
-  const [time, setTime] = useState<string | null>(null)
-
-  // State to store the Spotify thumbnail URL, start with a placeholder image
-  const [thumbnail, setThumbnail] = useState<string | null>();
 
   useEffect(() => {
 
@@ -82,16 +81,14 @@ const Simple = ({ weatherData }: WeatherProps) => {
 
   return (
     <div 
-      style={ settings?.breathing?.value ? {
-        backgroundSize: "400% 400%",
-        animation: `gradient-shift ${settings?.duration?.value}s ease infinite`,
+      style={{
+        backgroundSize: settings?.breathing?.value ? "400% 400%" : "cover",
+        animation: settings?.breathing?.value ? `gradient-shift ${settings?.duration?.value}s ease infinite` : "none",
         position: "absolute",
         inset: 0,
         background: `linear-gradient(90deg, ${settings?.from?.value}  0%, ${settings?.mid?.value} 50%, ${settings?.to?.value} 100%)`,
-      } : {
-        background: `linear-gradient(90deg, ${settings?.from?.value}  0%, ${settings?.mid?.value} 50%, ${settings?.to?.value} 100%)`
       }} 
-      className={`${settings?.breathing?.value ? "bg-size[400%_400%]" : "" } w-full h-full overflow-hidden`}>
+      className={`w-full h-full overflow-hidden`}>
 
 
       {/* Overlay to adjust the brightness by lowering opacity */}
