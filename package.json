@@ -15,22 +15,22 @@
     "dev:wrapper": "npx @deskthing/cli dev"
   },
   "dependencies": {
-    "@deskthing/client": "^0.11.1",
-    "@deskthing/server": "^0.11.2",
+    "@deskthing/client": "^0.11.2",
+    "@deskthing/server": "^0.11.6",
     "openmeteo": "^1.1.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.12.7"
   },
   "devDependencies": {
-    "@deskthing/cli": "^0.11.7",
-    "@deskthing/types": "^0.11.11",
+    "@deskthing/cli": "^0.11.10",
+    "@deskthing/types": "^0.11.16",
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.0",
     "esbuild": "^0.19.2",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
